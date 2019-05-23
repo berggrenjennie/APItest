@@ -19,44 +19,44 @@ const getPosts = (req, res) => {
 }
 
 const addPost = (req, res) => {
- // posts.push(req.body);
- res.sendStatus(201);
- res.send(posts.push(req.body));
+    posts.push(req.body);
+    res.sendStatus(201);
+    res.send(posts);
 }
 
-const postById = (req, res) => {
-  console.log(req.params.id) // Det användaren skickar med
-  res.send(users[req.params.id-1]); // Det vi skickar till användaren
+
+const getPostBypostId = (req, res) => {
+  console.log(req.params.postId) // Det användaren skickar med
+  res.send(posts[req.params.postId-1]); // Det vi skickar till användaren
 }
 
-const putPostByID = (req, res) => {
-  posts[req.params.id-1] = req.body;
-  res.send(posts[req.params.id-1]);
+
+const putPostBypostId = (req, res) => {
+  posts[req.params.postId-1] = req.body;
+  res.send(posts[req.params.postId-1]);
 }
 
-// app.patch("/posts/:id", (req, res) => {
-//
-//   //Ej klart!!
-//   res.sendStatus(204);
-//   posts[req.params.id] = res.body;
-//   res.send(posts[req.params.id]);
-// });
+const patchPostByPostId = (req, res) => {
+  if (req.body.title)
+    posts[req.params.postId-1].title = req.body.title;
+  if (req.body.body)
+    posts[req.params.psotId-1].body = req.body.body;
 
-// app.delete("/posts/:id", (req, res) => {
-//   // posts.splice(req.params.id - 1, 1);
-//   // console.log("Return value" + posts.splice(req.params.id -1, 1));
-//   // posts[req.params.id-1] = req.body;
-//   res.send(posts.splice(req.params.id -1, 1));
-// });
+  res.send(posts[req.params.postId-1]);
+}
+
+const deletePostById = (req, res) => {
+  res.send(posts.splice(req.params.postId -1, 1));
+}
+
 
 
 module.exports = {
   paramsPost: paramsPost,
   getPosts,
   addPost,
-  postById,
-  putPostByID
-
-
-
+  getPostBypostId,
+  putPostBypostId,
+  patchPostByPostId,
+  deletePostById
 }

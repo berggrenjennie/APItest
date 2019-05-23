@@ -16,9 +16,9 @@ const params = (req, res) => {
 }
 
 //USERS
-const getUsers = (req, res) => {
-  res.send(users);
-}
+// const getUsers = (req, res) => {
+//   res.send(users);
+// }
 
 const postUsers = (req, res) => {
   console.log(req.body); //Det användaren skickar in
@@ -27,21 +27,21 @@ const postUsers = (req, res) => {
   res.send(users);
 }
 
-const getUserId = (req, res) => {
-  console.log(req.params.id) // Det användaren skickar med
-  res.send(users[req.params.id-1]); // Det vi skickar till användaren
-}
-
-//ersätter med nya uppgifter från användaren
-const putUser = (req, res) => {
-  users[req.params.id-1] = req.body;
-  res.send(users[req.params.id-1]);
-}
+// const getUserId = (req, res) => {
+//   console.log(req.params.id) // Det användaren skickar med
+//   res.send(users[req.params.id-1]); // Det vi skickar till användaren
+// }
+//
+// //ersätter med nya uppgifter från användaren
+// const putUser = (req, res) => {
+//   users[req.params.id-1] = req.body;
+//   res.send(users[req.params.id-1]);
+// }
 
 module.exports = {
   params: params,
-  getUsers,
+  // getUsers,
   postUsers,
-  getUserId,
-  putUser
+  // getUserId,
+  // putUser
 }

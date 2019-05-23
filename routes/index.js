@@ -1,23 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const users = require('./users.js');
 const posts = require('./posts.js');
-const bodyData = require('./middleware.js');
 
-router.use(bodyData.bodyData)
+// middleware that is specific to this router
+//router.use(function timeLog (req, res, next) {
+//  console.log('Time: ', Date.now())
+//  next()
+//})
 
-router.get("/users", users.getUsers);
-router.post("/users", users.postUsers);
-router.get("/users/:id", users.getUserId);
-router.put("/users/:id",users.putUser);
-
-router.get("/params", users.params);
-
-router.get("/posts", posts.paramsPost);
 router.get("/posts", posts.getPosts);
 router.post("/posts", posts.addPost);
-router.get("/posts/:id",posts.postById);
-router.put("/posts/:id", posts.putPostByID);
+router.get("/posts/:postId", posts.getPostBypostId);
+router.put("/posts/:postId", posts.putPostBypostId);
+router.patch("/posts/:postId", posts.patchPostByPostId);
+router.delete("/posts/:postId", posts.deletePostById);
 
 module.exports = router;
